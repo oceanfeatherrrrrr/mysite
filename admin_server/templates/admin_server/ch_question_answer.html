@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改</title>
+<!--    /admin_server/ch_question_answer-->
+</head>
+<body>
+<form action="" method="post">
+        <input type="text" name="id" value="{{ q_a.id }}" readonly><br>
+<!--        <input type="text" value="{{ q_a.part }}" ><br>-->
+<!--        <input type="text" value="{{ q_a.question }}" ><br>-->
+<!--        <input type="text" value="{{ q_a.answer }}" ><br>-->
+        <textarea name="part" cols="39" rows="1">{{ q_a.part }}</textarea><br>
+        <textarea name="question" cols="39" rows="2">{{ q_a.question }}</textarea><br>
+        <textarea name="answer" cols="39" rows="8">{{ q_a.answer }}</textarea><br>
+        <input type="text" value="{{ q_a.add_date }}" disabled><br>
+        <input type="text" value="{{ q_a.ch_date }} " disabled>
+        <button>submit</button>
+</form>
+</body>
+</html>

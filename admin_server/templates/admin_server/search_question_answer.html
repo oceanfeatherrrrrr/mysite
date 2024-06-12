@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <style>
+        table   {
+            margin: 50px auto;
+        }
+        textarea {
+        height: 50px; /* 设置高度为200像素 */
+        width: 200px; /* 设置宽度为400像素 */
+        resize: none; /* 禁止用户改变textarea的大小 */
+            transition: all 1s;
+        }
+        a:hover{
+            color: red;
+        }
+        div {
+            margin: 0px auto;
+            width: 150px;
+        }
+        #big:hover {
+            height: 500px; /* 设置高度为200像素 */
+            width: 500px; /* 设置宽度为400像素 */
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="add_question_answer" style="font-size: 40px;">ADDO</a><a href="index" style="font-size: 40px;">RBACK</a>
+</div>
+<form action="ch_question_answer" id="select" method="post"></form>
+<table>
+    <tr id="head">
+        <th >ID</th>
+        <th >Part</th>
+        <th >Question</th>
+        <th >Answer</th>
+        <th >Add_date</th>
+        <th >Change_date</th>
+        <th >Operation</th>
+    </tr>
+    {% for i in result %}
+  <tr>
+    <td><textarea name="id" id="{{ i.id }}" cols="30" rows="3" disabled form="select">{{ i.id }}</textarea></td>
+    <td><textarea name="part"  cols="30" rows="3" form="select">{{ i.part }}</textarea></td>
+    <td><textarea name="question"  cols="30" rows="3" form="select">{{ i.question }}</textarea></td>
+    <td><textarea name="answer"  id="big" cols="30" rows="3" form="select">{{ i.answer }}</textarea></td>
+    <td><textarea name="add_date"  cols="30" rows="3" form="select">{{ i.add_date }}</textarea></td>
+    <td><textarea name="ch_date"  cols="30" rows="3" form="select">{{ i.ch_date }}</textarea></td>
+<!-- 禁用删除功能   <td><button onclick="confirmDelete('{{ i.id }}', '{{ i.part }}', '{{ i.question }}', '{{ i.answer }}', '{{ i.add_date }}', '{{ i.ch_date }}')">DEL</button></td>-->
+    <td><a href="/admin_server/ch_question_answer/{{ i.id }}">CHANGE</a><br></td>
+  </tr>
+    {% endfor %}
+</table>
+
+<form action="del_question_answer" method="post" id="deleteForm">
+    <input type="hidden" name="id_to_delete" id="idToDelete">
+</form>
+
+
+<script>
+function confirmDelete(id, part, question, answer, add_date, ch_date) {
+    if (confirm('确定要删除以下信息吗?\nID: ' + id + '\nPart: ' + part + '\nQuestion: ' + question + '\nAnswer: ' + answer + '\nAdd Date: ' + add_date + '\nChange Date: ' + ch_date)) {
+        // 如果用户点击了确认，则设置表单的隐藏字段并提交表单
+        document.getElementById('deleteForm').elements['id_to_delete'].value = id;
+        document.getElementById('deleteForm').submit();
+    }
+}
+
+    // 绑定事件监听器到所有的.delete-btn按钮
+document.addEventListener('DOMContentLoaded', function() {
+    var deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // 阻止按钮的默认行为
+            // 从按钮的data-url属性中获取URL
+            var deleteUrl = this.getAttribute('data-url');
+            // 你可以在这里添加额外的查询参数，如果需要的话
+            // 执行跳转
+            window.location.href = deleteUrl;
+        });
+    });
+});
+</script>
+</body>
+</html>

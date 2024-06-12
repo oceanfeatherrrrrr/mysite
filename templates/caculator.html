@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body {
+      display: flex;             /* 使用flex布局 */
+      flex-direction: column;    /* 设置为列方向 */
+      justify-content: center;   /* 在垂直方向上居中 */
+      align-items: center;       /* 在水平方向上居中（虽然在这里不是必需的）*/
+      text-align: center;        /* 水平文本居中（对于内联或块级内联元素）*/
+      margin: 300px auto;
+    }
+  </style>
+</head>
+<body>
+<form action="#" method="post">
+  <input type="text" name="num1" style="width:150px;" value={{ numa }}>
+  <select name="op" id="operater">
+    <option value="add" {% if rop == 'add' %}selected{% endif %}>+ add</option>
+    <option value="sub"{% if rop == 'sub' %}selected{% endif %}>- sub</option>
+    <option value="mul"{% if rop == 'mul' %}selected{% endif %}>* mul</option>
+    <option value="div"{% if rop == 'div' %}selected{% endif %}>/ div</option>
+  </select>
+  <input type="text" name="num2" style="width:150px;" value={{ numb }} >&emsp;=&emsp;{{ result }}<br><br>
+  <button>START</button>
+</form>
+</body>
+</html>
